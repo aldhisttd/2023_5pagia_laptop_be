@@ -17,11 +17,11 @@ $s = mysqli_query($koneksi, "INSERT IGNORE INTO merek(kode, nama) VALUES ('$kode
 if ($s) {
 
  $res['status'] = 200;
- $res['msg'] = "Data berhasil di insert";
+ $res['msg'] = "Data berhasil diinsert";
  $res['body'] = "";
 } else {
- $res['status'] = 401;
- $res['msg'] = "Gagal membuat kategori";
+ $res['status'] = 400;
+ $res['msg'] = "Gagal membuat merek";
  $res['body'] = "";
 }
 
