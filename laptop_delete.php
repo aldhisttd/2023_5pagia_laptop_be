@@ -28,8 +28,8 @@ if ($dt) {
         $res['body'] = "";
     }
 } else {
-    $res['status'] = 400;
-    $res['msg'] = "Data gagal dihapus";
+    $res['status'] = 404;
+    $res['msg'] = "Data tidak ditemukan";
     $res['body'] = "";
 }
 
