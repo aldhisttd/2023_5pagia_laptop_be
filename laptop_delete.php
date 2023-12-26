@@ -22,14 +22,10 @@ if ($dt) {
         $res['status'] = 200;
         $res['msg'] = "Data berhasil dihapus";
         $res['body'] = "";
-    } else {
-        $res['status'] = 404;
-        $res['msg'] = "Data tidak ditemukan";
-        $res['body'] = "";
-    }
+    } 
 } else {
-    $res['status'] = 404;
-    $res['msg'] = "Data tidak ditemukan";
+    $res['status'] = 400;
+    $res['msg'] = "Data gagal dihapus";
     $res['body'] = "";
 }
 
