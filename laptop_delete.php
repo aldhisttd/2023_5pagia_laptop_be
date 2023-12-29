@@ -21,13 +21,11 @@ if ($dt) {
     }
 
     $q = mysqli_query($koneksi, "DELETE FROM laptop WHERE kode='$kode'");
-    // berhasil
     if ($q) {
         $res['status'] = 200;
         $res['msg'] = "Data berhasil dihapus";
         $res['body']['data']['kode'] = "$kode";
     } 
-    // gagal
 } else {
     $res['status'] = 400;
     $res['msg'] = "Data gagal dihapus";
