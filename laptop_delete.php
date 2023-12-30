@@ -17,7 +17,7 @@ $dt = mysqli_fetch_array($d);
 if ($dt) {
     if (isset($dt['gambar']) && !empty($dt['gambar'])) {
         $gambar = $dt['gambar'];
-        unlink('upload/' . $gambar);
+        unlink($gambar);
     }
 
     $q = mysqli_query($koneksi, "DELETE FROM laptop WHERE kode='$kode'");
