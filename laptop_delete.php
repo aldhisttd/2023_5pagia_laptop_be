@@ -9,13 +9,13 @@ $res = [
     ]
 ];
 
-$kode = mysqli_real_escape_string($koneksi, $_REQUEST['kode']);
+$kode = $_REQUEST['kode'];
 
 $d = mysqli_query($koneksi, "SELECT kode, gambar FROM laptop WHERE kode='$kode'");
 $dt = mysqli_fetch_array($d);
 
 if ($dt) {
-    if (isset($dt['gambar']) && !empty($dt['gambar'])) {
+    {
         $gambar = $dt['gambar'];
         unlink($gambar);
     }
