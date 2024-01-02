@@ -17,12 +17,12 @@ $query = mysqli_query($koneksi, "UPDATE kategori SET nama='$nama' WHERE kode='$k
 
     if ($query) {
         $response['status'] = 200;
-        $response['msg'] = 'Data berhasil diupdate';
+        $response['msg'] = 'Data berhasil diperbarui';
         $response['body']['data']['kode'] = $kode;
         $response['body']['data']['nama'] = $nama;
     } else {
         $response['status'] = 400;
-        $response['msg'] = 'Gagal update kategori';
+        $response['msg'] = 'Data gagal diperbarui';
     }
 
 
