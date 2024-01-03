@@ -1,12 +1,17 @@
 <?php
-include "env.php";
+include 'env.php';
 
-if (isset($_REQUEST['kode'])) {
-    $kode = $_REQUEST['kode'];
+$response = [
+    'status' => '',
+    'msg' => '',
+    'body' => [
+        'data' => []
+    ]
+];
 
-    $query = "SELECT * FROM laptop WHERE kode='$kode'";
-    $result = mysqli_query($koneksi, $query);
-    $laptopData = mysqli_fetch_assoc($result);
+$kode = $_REQUEST['kode'];
+$query = mysqli_query($koneksi, "SELECT * FROM laptop WHERE kode = '$kode'");
+$laptopData= mysqli_fetch_assoc($query);
 
     if ($laptopData) {
         $response = [
@@ -26,14 +31,12 @@ if (isset($_REQUEST['kode'])) {
         ];
     } else {
         $response = [
-            'status' => 404,
-            'msg' => 'not found',
+            'status' => 400,
+            'msg' => 'error',
             'body' => [
                 'data' => []
             ]
         ];
     }
-}
-
 echo json_encode($response);
 ?>
