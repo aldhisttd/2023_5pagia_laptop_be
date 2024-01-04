@@ -29,7 +29,7 @@ if (!$koneksi) {
         $gambar = $data['gambar'];
 
         // hapus gambar lama
-            unlink("upload/" . $gambar);
+            unlink($gambar);
 
         // upload gambar baru
         $temp = explode(".", $_FILES["gambar"]["name"]);
@@ -51,8 +51,7 @@ if (!$koneksi) {
     $response['body']['data']['deskripsi'] = $deskripsi;
 
     mysqli_query($koneksi, "UPDATE laptop
-                            SET kode = '$kode', 
-                                nama = '$nama', 
+                            SET nama = '$nama', 
                                 kode_kategori = '$kode_kategori',
                                 kode_merek = '$kode_merek',
                                 harga = '$harga',
