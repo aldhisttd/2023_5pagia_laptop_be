@@ -10,10 +10,9 @@ $response = [
 ];
 
 $kode = $_GET['kode'];
-$query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE kode = '$kode'");
 
-    if ($query) {
-        $datakategori = mysqli_fetch_assoc($query);
+$query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE kode= '$kode'");
+$datakategori = mysqli_fetch_assoc($query);
 
         if ($datakategori) {
             $response['status'] = 200;
@@ -23,7 +22,6 @@ $query = mysqli_query($koneksi, "SELECT * FROM kategori WHERE kode = '$kode'");
             $response['status'] = 400;
             $response['msg'] = 'error';
         }
-    }
 
 echo json_encode($response);
 ?>
