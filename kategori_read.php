@@ -1,35 +1,26 @@
 <?php
+include 'env.php';
 
-// Database connection (similar to insert_kategori.php)
-include "env.php";
+$response = [
+    'status' => '',
+    'msg' => '',
+    'body' => [
+        'data' => []
+    ]
+];
 
-if ($koneksi->connect_error) {
-    die("Connection failed: " . $koneksi->connect_error);
-}
+$result = mysqli_query($koneksi, "SELECT * FROM kategori");
+$row = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-// Check if the 'id' parameter is provided in the URL
-if (isset($_GET['kode'])) {
-    $kode = $_GET['kode'];
+if (!isset($koneksi)) {
 
-    // Use prepared statement to prevent SQL injection
-    $sql = "SELECT * FROM kategori WHERE kode = ?";
-    $stmt = $koneksi->prepare($sql);
-    $stmt->bind_param("i", $kode);
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $data = $result->fetch_assoc();
-        echo json_encode(array("status" => "200", "message" => "success", "data" => $data));
-    } else {
-        echo json_encode(array("status" => "400", "message" => "error"));
-    }
-
-    $stmt->close();
+    $response['status'] = 400;
+    $response['msg'] = 'error';
 } else {
-    echo json_encode(array("status" => "400", "message" => "error"));
+    $response['status'] = 200;
+    $response['msg'] = 'success';
+    $response['body']['data'] = $row;
 }
 
-$koneksi->close();
+echo json_encode($response);
 ?>
